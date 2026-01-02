@@ -61,7 +61,22 @@ We embrace the diversity with a universal approach:
 
 ## 🚀 Quick Start
 
-### Install via OpenSkills (Recommended)
+### Claude Code
+
+```bash
+/plugin marketplace add numman-ali/n-skills
+```
+
+Then install any skill:
+```bash
+/plugin install gastown@n-skills
+/plugin install dev-browser@n-skills
+/plugin install zai-cli@n-skills
+```
+
+### OpenSkills (Universal)
+
+Works with **every agent**: Claude Code, Cursor, Windsurf, Cline, Aider, and anything that reads AGENTS.md.
 
 ```bash
 npm i -g openskills
@@ -69,22 +84,10 @@ openskills install numman-ali/n-skills
 openskills sync
 ```
 
-That's it. Works with **every agent**: Claude Code, Cursor, Windsurf, Cline, Aider, and anything that reads AGENTS.md.
-
 > **New to OpenSkills?** It's the universal skills installer. [Learn more →](https://github.com/numman-ali/openskills)
 
----
-
 <details>
-<summary><strong>Or use native installers</strong></summary>
-
-Each agent has its own way to install skills directly:
-
-**Claude Code:**
-```bash
-/plugin marketplace add numman-ali/n-skills
-/plugin install zai-cli@n-skills
-```
+<summary><strong>Other native installers</strong></summary>
 
 **Codex:**
 ```bash
@@ -100,7 +103,7 @@ $skill-installer https://github.com/numman-ali/n-skills/tree/main/skills/tools/z
 | Skill | Category | Source | Description |
 |:------|:---------|:-------|:------------|
 | **[dev-browser](./skills/automation/dev-browser/)** | `automation` | [SawyerHood](https://github.com/SawyerHood/dev-browser) | Browser automation with persistent page state |
-| **[gastown](./skills/tools/gastown/)** | `tools` | native | Multi-agent orchestrator for Claude Code |
+| **[gastown](./skills/tools/gastown/)** | `tools` | native | Multi-agent orchestrator (best with Claude Code + Opus) |
 | **[zai-cli](./skills/tools/zai-cli/)** | `tools` | native | Z.AI vision, search, reader, and GitHub exploration via MCP |
 
 > More skills coming soon. Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md)
