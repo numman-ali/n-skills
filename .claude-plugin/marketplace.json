@@ -10,7 +10,7 @@
     {
       "name": "dev-browser",
       "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.",
-      "source": "./skills/automation/dev-browser",
+      "source": "./",
       "skills": [
         "./skills/automation/dev-browser"
       ],
@@ -19,7 +19,7 @@
     {
       "name": "gastown",
       "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination, beads, hooks, the witness, the mayor, the refinery, or wants to run multiple AI agents on projects simultaneously.",
-      "source": "./skills/tools/gastown",
+      "source": "./",
       "skills": [
         "./skills/tools/gastown"
       ],
@@ -28,7 +28,7 @@
     {
       "name": "zai-cli",
       "description": "Z.AI vision, search, reader, and GitHub exploration via MCP",
-      "source": "./skills/tools/zai-cli",
+      "source": "./",
       "skills": [
         "./skills/tools/zai-cli"
       ],
@@ -36,8 +36,8 @@
     }
   ],
   "metadata": {
-    "version": "1.0.1",
-    "generated_at": "2026-01-02T22:45:00.000Z",
+    "version": "1.0.2",
+    "generated_at": "2026-01-02T23:50:00.000Z",
     "skill_count": 3
   }
 }
