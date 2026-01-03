@@ -452,7 +452,7 @@ session not found
 polecat not found
 ```
 **Cause:** Polecat worktree doesn't exist
-**Fix:** Verify polecat name, check `gt ls polecats`
+**Fix:** Verify polecat name, check `gt polecat list`
 
 ```
 invalid session name "%s": missing "%s" prefix

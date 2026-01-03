@@ -817,7 +817,221 @@ Witness-N ──┘
 
 ---
 
-## 18. Escalation (How Agents Ask for Help)
+## 18. Agent Communication Flow
+
+Agents communicate through two mechanisms: **mail** (async, persistent) and **nudge/peek** (direct, session-based).
+
+### Communication Methods Compared
+
+| Method | Type | Use Case | Persistence |
+|--------|------|----------|-------------|
+| **Mail** | Async | Formal notifications, handoffs, escalations | Git-backed, survives restarts |
+| **Nudge** | Direct | Real-time session messages | Session lifetime only |
+| **Peek** | Direct | Read session output | Session lifetime only |
+
+### The Nudge/Peek Pattern
+
+For real-time agent coordination, use `gt nudge` to send and `gt peek` to read:
+
+```
+Agent A                                              Agent B
+   │                                                    │
+   │  gt nudge <target> "Check issue gt-xyz"           │
+   │───────────────────────────────────────────────────▶│
+   │                                                    │
+   │                                         (B sees message
+   │                                          in tmux pane)
+   │                                                    │
+   │  gt peek <target>                                  │
+   │◀───────────────────────────────────────────────────│
+   │                                                    │
+   │  (A reads B's output)                              │
+```
+
+### Nudge Target Formats
+
+| Target | Session | Example |
+|--------|---------|---------|
+| `mayor` | gt-mayor | Town-level coordinator |
+| `deacon` | gt-deacon | Background daemon |
+| `witness` | gt-{rig}-witness | Rig monitor |
+| `refinery` | gt-{rig}-refinery | Rig merger |
+| `{rig}/{polecat}` | gt-{rig}-polecat-{name} | Worker |
+| `channel:{name}` | All channel members | Broadcast |
+
+### Mail Routing Diagram
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    Town (.beads/)                   │
+│  ┌─────────────────────────────────────────────┐   │
+│  │                 Mayor Inbox                 │   │
+│  │  └── mayor/                                 │   │
+│  └─────────────────────────────────────────────┘   │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐   │
+│  │           <rig>/ (rig mailboxes)            │   │
+│  │  ├── witness      ← <rig>/witness           │   │
+│  │  ├── refinery     ← <rig>/refinery          │   │
+│  │  ├── <polecat>    ← <rig>/<polecat>         │   │
+│  │  └── crew/<name>  ← <rig>/crew/<name>       │   │
+│  └─────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────┘
+```
+
+### Mail Address Formats
+
+| Address | Recipient |
+|---------|-----------|
+| `mayor/` | Mayor inbox |
+| `<rig>/witness` | Rig's Witness |
+| `<rig>/refinery` | Rig's Refinery |
+| `<rig>/<polecat>` | Polecat (e.g., greenplace/Toast) |
+| `<rig>/crew/<name>` | Crew worker (e.g., greenplace/crew/max) |
+| `--human` | Human overseer (special) |
+
+### When to Use Each Method
+
+**Use Mail for:**
+- Formal notifications (POLECAT_DONE, MERGE_READY)
+- Handoff messages (session continuity)
+- Escalation requests
+- Anything that must survive restarts
+
+**Use Nudge for:**
+- Quick "are you there?" checks
+- Status queries
+- Immediate attention requests
+- Debugging/monitoring
+
+### DND (Do Not Disturb)
+
+Agents can enable DND to block nudges during focused work:
+
+```bash
+gt dnd on                         # Enable DND
+gt dnd off                        # Disable DND
+gt nudge <target> --force         # Override DND (use sparingly)
+```
+
+---
+
+## 19. Gates (Async Coordination)
+
+**Gates** are async checkpoints that block work until a condition is met. They enable agents to wait for external events without spinning.
+
+### Gate Types
+
+| Gate Type | Awaits | Example |
+|-----------|--------|---------|
+| `gh:run` | GitHub Actions run completion | CI pipeline |
+| `gh:pr` | Pull request merge/close | PR review |
+| `timer` | Time duration | Rate limiting |
+| `human` | Human acknowledgment | Design approval |
+| `mail` | Message arrival | Response from agent |
+
+### Gate Lifecycle
+
+```
+       bd gate create
+            │
+            ▼
+      ┌───────────┐
+      │  PENDING  │ ◀─── Gate created, condition not met
+      └─────┬─────┘
+            │
+            ▼ (condition met)
+      ┌───────────┐
+      │ SATISFIED │ ◀─── Gate resolved, work can continue
+      └─────┬─────┘
+            │
+            ▼ (agent resumes)
+      ┌───────────┐
+      │  CLOSED   │ ◀─── Gate consumed
+      └───────────┘
+```
+
+### The Park/Resume Pattern
+
+Agents use `gt park` to save state and `gt resume` to continue after a gate resolves:
+
+```
+Polecat                              Gate                           External
+   │                                   │                               │
+   │ gt park --gate gh:run:12345       │                               │
+   │──────────────────────────────────▶│                               │
+   │                                   │                               │
+   │ (polecat goes to sleep)           │                               │
+   │                                   │                               │
+   │                                   │  (CI completes)               │
+   │                                   │◀──────────────────────────────│
+   │                                   │                               │
+   │                            (gate satisfied)                       │
+   │                                   │                               │
+   │ gt resume (or auto-resume)        │                               │
+   │◀──────────────────────────────────│                               │
+   │                                   │                               │
+   │ (polecat continues)               │                               │
+```
+
+### Gate Commands
+
+```bash
+# Create a gate
+bd gate create gh:run:12345 "Wait for CI"
+
+# Park work on a gate
+gt park --gate gh:pr:456 --message "Waiting for review"
+
+# Check gate status
+bd gate status <gate-id>
+
+# Resume when gate satisfied
+gt resume
+
+# Check for handoff messages on resume
+gt resume --check-handoff
+```
+
+### Handoff Messages
+
+When parking, agents can leave handoff messages for their successor (or themselves after restart):
+
+```bash
+gt park --gate timer:1h --handoff "Remember to check test results first"
+```
+
+On resume:
+```bash
+gt resume
+# Outputs: "Handoff message: Remember to check test results first"
+```
+
+### Why Gates Matter
+
+Gates prevent the anti-pattern of busy-waiting:
+
+```
+❌ BAD: Busy-wait loop
+   while ! check_ci_status; do
+     sleep 60
+   done
+
+✅ GOOD: Gate-based wait
+   gt park --gate gh:run:12345
+   # Agent sleeps, system notifies on completion
+   gt resume
+```
+
+Gates also:
+- Track what work is blocked on what
+- Enable the system to auto-resume work
+- Provide audit trail of async coordination
+- Let agents sleep without consuming resources
+
+---
+
+## 20. Escalation (How Agents Ask for Help)
 
 The **Escalation Protocol** is how agents request intervention when automated resolution is not possible.
 

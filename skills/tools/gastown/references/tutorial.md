@@ -17,6 +17,53 @@ You lead the user through Gas Town step by step. Each section tells you:
 4. **Celebrate wins** - Use milestone boxes after each stage.
 5. **Adapt** - If user wants to skip or explore, go with them.
 6. **Visual first** - Lead with diagrams, follow with explanation.
+7. **Verify understanding** - Occasionally ask learner to explain concepts back.
+8. **Show progress** - Use the progress header on every major SHOW block.
+
+### Progress Header Format
+
+Use this header on major SHOW blocks to show where the learner is:
+
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⛽ STAGE 1: FOUNDATION                                    Lesson 1.3 [3/5] ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+This gives learners constant awareness of where they are in the journey.
+
+### Dynamic Path Guidance
+
+**If learner wants to skip ahead:**
+- Show them the journey map, ask which stage interests them
+- Jump to that stage, but note any prerequisites they missed
+
+**If learner seems confused:**
+- Pause and ask: "Want me to explain that differently?"
+- Offer to re-show with a different example
+
+**If learner wants to practice:**
+- Create additional beads/convoys for hands-on work
+- Don't rush to next lesson
+
+**If learner asks "why?":**
+- Always explain the reasoning, not just the what
+- Connect to the bigger picture (GUPP, the cognition engine)
+
+**Verify understanding occasionally:**
+```json
+{
+  "questions": [{
+    "question": "Quick check - can you explain what GUPP means?",
+    "header": "Verify",
+    "multiSelect": false,
+    "options": [
+      {"label": "It means...", "description": "I'll explain it back"},
+      {"label": "Not quite sure", "description": "Please explain again"}
+    ]
+  }]
+}
+```
 
 ### Tutorial Stages
 
@@ -50,6 +97,8 @@ You lead the user through Gas Town step by step. Each section tells you:
 │  3.3 Molecules                Multi-step workflows                         │
 │  3.4 Escalation               When to ask for help                         │
 │  3.5 Troubleshooting          gt doctor and recovery                       │
+│  3.6 Gates                    Async coordination                           │
+│  3.7 Park and Resume          Pause and continue work                      │
 │  🏆 MILESTONE: Master Operator!                                             │
 │                                                                             │
 │  STAGE 4: EXPERT              Deep internals                               │
@@ -110,6 +159,10 @@ The journey has 4 stages. We'll start with the fundamentals.
 
 ### SHOW:
 ```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⛽ STAGE 1: FOUNDATION                                    Lesson 1.1 [1/5] ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                              THE SECRET                                   ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
@@ -483,6 +536,31 @@ gt status
 ━━ ⛽ Gas Town | Learning ━━
 ```
 
+### VERIFY (Optional - use if learner seems uncertain):
+```json
+{
+  "questions": [{
+    "question": "Quick check! What does GUPP stand for?",
+    "header": "Verify",
+    "multiSelect": false,
+    "options": [
+      {"label": "If there's work on my hook, I run it", "description": "The propulsion principle!"},
+      {"label": "I'm not sure", "description": "Let me explain again"}
+    ]
+  }]
+}
+```
+
+If they're not sure, re-explain:
+```
+GUPP = "Gas Town Universal Propulsion Principle"
+
+It's the simple rule every worker follows:
+   🪝 "If there's work on my hook, I RUN IT."
+
+That's it. That's the whole engine. Work lands → workers run.
+```
+
 ### ASK:
 ```json
 {
@@ -615,6 +693,10 @@ gt convoy status <convoy-id>
 
 ### SHOW:
 ```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⛽ STAGE 2: FLOW                                          Lesson 2.3 [3/5] ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
 Your workers are running. Here's how to check on them:
 
     ╔═══════════════════════════════════════════════════════════════════════╗
@@ -629,6 +711,9 @@ Your workers are running. Here's how to check on them:
     ║                                                                       ║
     ║  "polecat stuck"        ──▶  gt nudge <agent> "What's blocking?"      ║
     ║                              Send a message to unstick them           ║
+    ║                                                                       ║
+    ║  "cancel that work"     ──▶  gt unsling <bead-id>                     ║
+    ║                              Stop work on a bead, free the polecat    ║
     ║                                                                       ║
     ║  "activity feed"        ──▶  gt feed                                  ║
     ║                              Real-time stream of everything           ║
@@ -680,7 +765,7 @@ You don't have to do anything. The pipeline runs automatically.
 Show the merge queue:
 ```bash
 gt refinery status
-gt mq list
+gt refinery queue
 ```
 
 ---
@@ -701,6 +786,9 @@ Agents communicate via mail. You can read it too!
     ║                              --subject "Hi" --body "..."              ║
     ║                                                                       ║
     ║  "broadcast to all"     ──▶  gt broadcast "Check your mail"           ║
+    ║                                                                       ║
+    ║  "hand this off"        ──▶  gt handoff <bead> --to <agent>           ║
+    ║                              Transfer work to another worker          ║
     ║                                                                       ║
     ╚═══════════════════════════════════════════════════════════════════════╝
 
@@ -902,6 +990,118 @@ When something breaks, I run diagnostics.
     ╚═══════════════════════════════════════════════════════════════════════╝
 ```
 
+---
+
+## 3.6 Gates (Async Coordination)
+
+### SHOW:
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⛽ STAGE 3: MASTERY                                       Lesson 3.6 [6/7] ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Sometimes work needs to WAIT for something external.
+
+    ╔═══════════════════════════════════════════════════════════════════════╗
+    ║                           GATES                                       ║
+    ║               (Async Checkpoints That Block Work)                     ║
+    ╠═══════════════════════════════════════════════════════════════════════╣
+    ║                                                                       ║
+    ║   Polecat working...                                                  ║
+    ║         │                                                             ║
+    ║         │  "I need CI to pass before I can merge"                     ║
+    ║         ▼                                                             ║
+    ║   ┌─────────────┐                                                     ║
+    ║   │ GATE: gh:run│◀───── Work PARKS here                               ║
+    ║   │  (waiting)  │                                                     ║
+    ║   └──────┬──────┘                                                     ║
+    ║          │                                                            ║
+    ║          │  CI completes ✓                                            ║
+    ║          ▼                                                            ║
+    ║   Work RESUMES automatically                                          ║
+    ║                                                                       ║
+    ╚═══════════════════════════════════════════════════════════════════════╝
+
+GATE TYPES:
+┌──────────┬────────────────────────────────────────────────────────────────┐
+│ gh:run   │ Wait for GitHub Actions workflow to complete                   │
+├──────────┼────────────────────────────────────────────────────────────────┤
+│ gh:pr    │ Wait for pull request to be merged or closed                   │
+├──────────┼────────────────────────────────────────────────────────────────┤
+│ timer    │ Wait for a duration (rate limiting, cooldown)                  │
+├──────────┼────────────────────────────────────────────────────────────────┤
+│ human    │ Wait for human approval/acknowledgment                         │
+├──────────┼────────────────────────────────────────────────────────────────┤
+│ mail     │ Wait for a message to arrive                                   │
+└──────────┴────────────────────────────────────────────────────────────────┘
+
+Gates let workers wait for the real world without blocking other work.
+```
+
+### ASK:
+```json
+{
+  "questions": [{
+    "question": "Gates are powerful! Want to see park/resume in action?",
+    "header": "Next",
+    "multiSelect": false,
+    "options": [
+      {"label": "Show me park/resume", "description": "How work pauses and continues"},
+      {"label": "Move to troubleshooting", "description": "Skip to fixing problems"}
+    ]
+  }]
+}
+```
+
+---
+
+## 3.7 Park and Resume
+
+### SHOW:
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ⛽ STAGE 3: MASTERY                                       Lesson 3.7 [7/7] ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Work can be PARKED (paused) and RESUMED later.
+
+    ╔═══════════════════════════════════════════════════════════════════════╗
+    ║                      PARK AND RESUME                                  ║
+    ╠═══════════════════════════════════════════════════════════════════════╣
+    ║                                                                       ║
+    ║   "pause this work"     ──▶  gt park <bead> --reason "waiting on X"   ║
+    ║                              Work goes into suspended state           ║
+    ║                              Polecat can be freed for other work      ║
+    ║                                                                       ║
+    ║   "resume that work"    ──▶  gt resume <bead>                         ║
+    ║                              Work picks up where it left off          ║
+    ║                              New polecat spawns with full context     ║
+    ║                                                                       ║
+    ║   ─────────────────────────────────────────────────────────────────   ║
+    ║                                                                       ║
+    ║   USE CASES:                                                          ║
+    ║   • Waiting for external API/service                                  ║
+    ║   • Blocked on human decision                                         ║
+    ║   • Rate limiting                                                     ║
+    ║   • End of day - resume tomorrow                                      ║
+    ║   • Priority shift - work on something else first                     ║
+    ║                                                                       ║
+    ╚═══════════════════════════════════════════════════════════════════════╝
+
+The key: work state survives in beads. Context is never lost.
+```
+
+### DO:
+```bash
+# Show any parked work
+gt status --parked
+
+# Example park command (show but don't run unless they have active work)
+# gt park <bead-id> --reason "Waiting for design review"
+```
+
+---
+
 ### SHOW (Stage 3 Complete):
 ```
 ╔═══════════════════════════════════════════════════════════════════════════╗
@@ -917,6 +1117,8 @@ When something breaks, I run diagnostics.
 ║  ✓ Multi-step workflows with molecules                                    ║
 ║  ✓ Escalation patterns                                                    ║
 ║  ✓ Troubleshooting and recovery                                           ║
+║  ✓ Gates for async coordination                                           ║
+║  ✓ Park and resume for work lifecycle                                     ║
 ║                                                                           ║
 ║  You're a master operator.                                                ║
 ║                                                                           ║
@@ -1019,9 +1221,9 @@ Dogs are the Deacon's helpers for infrastructure tasks.
     ║   • Garbage collection                                                ║
     ║   • Cross-rig cleanup                                                 ║
     ║                                                                       ║
-    ║   gt dog list                  # See all dogs                         ║
-    ║   gt dog add alpha             # Create a dog                         ║
-    ║   gt dog call alpha            # Wake a dog for work                  ║
+    ║   gt boot status               # Check Boot (Deacon watchdog) status   ║
+    ║   gt boot spawn                # Spawn Boot for triage                ║
+    ║                                                                       ║
     ║                                                                       ║
     ╚═══════════════════════════════════════════════════════════════════════╝
 ```
@@ -1192,9 +1394,13 @@ Show this when user asks for a summary:
 ║  "add my project"              │  gt rig add <name> <url>                 ║
 ║  "create work: <desc>"         │  bd create --title "<desc>"              ║
 ║  "sling <work> to <rig>"       │  gt sling <bead> <rig>                   ║
+║  "cancel that work"            │  gt unsling <bead>                       ║
 ║  "list polecats"               │  gt polecat list                         ║
 ║  "how's <worker>?"             │  gt peek <agent>                         ║
 ║  "check my mail"               │  gt mail inbox                           ║
+║  "hand this off to <agent>"    │  gt handoff <bead> --to <agent>          ║
+║  "pause this work"             │  gt park <bead> --reason "..."           ║
+║  "resume that work"            │  gt resume <bead>                        ║
 ║  "create convoy"               │  gt convoy create <name> <beads>         ║
 ║  "add crew member <name>"      │  gt crew add <name>                      ║
 ║  "something's broken"          │  gt doctor --fix                         ║

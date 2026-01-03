@@ -248,8 +248,9 @@ bd version
 cd ~/gt
 gt status
 
-# 3. Run health checks
+# 3. Run BOTH health checks
 gt doctor
+bd doctor
 
 # 4. Verify rig setup (after adding a rig)
 gt rig list

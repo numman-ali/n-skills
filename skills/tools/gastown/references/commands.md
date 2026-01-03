@@ -320,6 +320,81 @@ gt swarm [flags]
 
 ---
 
+### gt mol
+
+Agent-specific molecule workflow operations. Operates on YOUR hook and YOUR attached molecules.
+
+**Syntax:**
+```bash
+gt mol [subcommand] [flags]
+```
+
+**Aliases:** `molecule`
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `status` | Show what's on your hook (alias: `gt hook`) |
+| `current` | Show what you should be working on |
+| `progress` | Show execution progress through steps |
+| `step done` | Complete current step (auto-continues) |
+| `attach` | Attach molecule to your hook |
+| `detach` | Detach molecule from your hook |
+| `burn` | Discard attached molecule (no record) |
+| `squash` | Compress to digest (permanent record) |
+
+**Examples:**
+```bash
+gt hook                    # Show what's on my hook
+gt mol current             # What should I be working on?
+gt mol progress            # Show step progress
+gt mol step done           # Complete current step
+gt mol attach mol-abc      # Attach molecule to hook
+gt mol detach              # Detach molecule
+gt mol burn                # Discard without record
+gt mol squash              # Compress to digest
+```
+
+**Related Commands:**
+- `gt sling mol-xxx target` - Pour formula + sling to agent
+- `gt formula list` - List available formulas
+
+---
+
+### gt formula
+
+Manage workflow formulas - reusable molecule templates.
+
+**Syntax:**
+```bash
+gt formula [subcommand] [flags]
+```
+
+**Aliases:** `formulas`
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `list` | List available formulas from all search paths |
+| `show <name>` | Display formula details (steps, variables) |
+| `run <name>` | Execute a formula (pour and dispatch) |
+| `create <name>` | Create a new formula template |
+
+**Search Paths (in order):**
+1. `.beads/formulas/` (project)
+2. `~/.beads/formulas/` (user)
+3. `$GT_ROOT/.beads/formulas/` (orchestrator)
+
+**Examples:**
+```bash
+gt formula list                    # List all formulas
+gt formula show shiny              # Show formula details
+gt formula run shiny --pr=123      # Run formula on PR #123
+gt formula create my-workflow      # Create new formula template
+```
+
+---
+
 ## Worker Management Commands
 
 ### gt polecat
@@ -754,7 +829,26 @@ gt worktree remove beads --force      # Force remove
 
 ### gt mail
 
-Internal mail system for agent communication.
+Internal mail system for agent communication. Messages are stored as beads.
+
+**Mail Routing:**
+```
+┌─────────────────────────────────────────────────────┐
+│                    Town (.beads/)                   │
+│  ┌─────────────────────────────────────────────┐   │
+│  │                 Mayor Inbox                 │   │
+│  │  └── mayor/                                 │   │
+│  └─────────────────────────────────────────────┘   │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐   │
+│  │           <rig>/ (rig mailboxes)            │   │
+│  │  ├── witness      ← <rig>/witness           │   │
+│  │  ├── refinery     ← <rig>/refinery          │   │
+│  │  ├── <polecat>    ← <rig>/<polecat>         │   │
+│  │  └── crew/<name>  ← <rig>/crew/<name>       │   │
+│  └─────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────┘
+```
 
 **Syntax:**
 ```bash
@@ -770,6 +864,20 @@ gt mail <subcommand> [flags]
 | `check` | Check for new mail |
 | `reply <id>` | Reply to a message |
 | `archive <id>` | Archive a message |
+| `peek` | Show preview of first unread message |
+| `thread <id>` | View a message thread |
+| `search <query>` | Search messages by content |
+| `clear` | Clear all messages from inbox |
+
+**Address Formats:**
+| Address | Recipient |
+|---------|-----------|
+| `mayor/` | Mayor inbox |
+| `<rig>/witness` | Rig's Witness |
+| `<rig>/refinery` | Rig's Refinery |
+| `<rig>/<polecat>` | Polecat (e.g., greenplace/Toast) |
+| `<rig>/crew/<name>` | Crew worker (e.g., greenplace/crew/max) |
+| `--human` | Human overseer (special) |
 
 **Flags for `mail inbox`:**
 | Flag | Description |
@@ -781,7 +889,7 @@ gt mail <subcommand> [flags]
 **Flags for `mail send`:**
 | Flag | Description |
 |------|-------------|
-| `--to string` | Recipient |
+| `--to string` | Recipient address |
 | `--subject string` | Subject line |
 | `--body string` | Message body |
 | `--priority string` | Priority (low, normal, high, urgent) |
@@ -790,11 +898,84 @@ gt mail <subcommand> [flags]
 ```bash
 gt mail inbox                         # Check inbox
 gt mail inbox --identity mayor        # Check Mayor's inbox
-gt mail send --to mayor --subject "Update" --body "Work complete"
+gt mail send --to mayor/ --subject "Update" --body "Work complete"
+gt mail send --to greenplace/witness --subject "Patrol" --body "Process work"
 gt mail read msg-abc123               # Read message
 gt mail reply msg-abc123              # Reply to message
 gt mail check --inject                # Check and inject mail into context
+gt mail thread msg-abc123             # View conversation thread
+gt mail search "merge conflict"       # Search for messages
 ```
+
+---
+
+### gt nudge
+
+Send a message to an agent session reliably. This is the canonical way to communicate with running Claude sessions.
+
+**Syntax:**
+```bash
+gt nudge <target> [message] [flags]
+```
+
+**Target Formats:**
+| Target | Session |
+|--------|---------|
+| `mayor` | gt-mayor |
+| `deacon` | gt-deacon |
+| `witness` | gt-<rig>-witness (current rig) |
+| `refinery` | gt-<rig>-refinery (current rig) |
+| `<rig>/<polecat>` | gt-<rig>-polecat-<name> |
+| `channel:<name>` | All members of a named channel |
+
+**Flags:**
+| Flag | Description |
+|------|-------------|
+| `-m, --message string` | Message to send |
+| `-f, --force` | Send even if target has DND enabled |
+
+**Examples:**
+```bash
+gt nudge greenplace/furiosa "Check your mail and start working"
+gt nudge mayor "Status update requested"
+gt nudge witness "Check polecat health"
+gt nudge deacon session-started
+gt nudge channel:workers "New priority work available"
+```
+
+**Note:** If target has DND (Do Not Disturb) enabled, nudge is skipped unless `--force` is used.
+
+---
+
+### gt peek
+
+View recent output from an agent session. The companion to `gt nudge` for agent communication.
+
+**Syntax:**
+```bash
+gt peek <rig/polecat> [count] [flags]
+```
+
+**Flags:**
+| Flag | Description |
+|------|-------------|
+| `-n, --lines int` | Number of lines to capture (default 100) |
+
+**Examples:**
+```bash
+gt peek greenplace/furiosa           # Last 100 lines (default)
+gt peek greenplace/furiosa 50        # Last 50 lines
+gt peek greenplace/furiosa -n 200    # Last 200 lines
+```
+
+**Common Use Cases:**
+- Checking what an agent is currently doing
+- Debugging stuck agents
+- Reviewing recent agent output
+
+**The nudge/peek pair:**
+- `gt nudge` - send messages TO a session (reliable delivery)
+- `gt peek` - read output FROM a session (capture-pane wrapper)
 
 ---
 
@@ -1222,4 +1403,246 @@ gt mail inbox            # Check messages
 gt polecat gc            # Clean up idle polecats
 gt down                  # Shutdown infrastructure
 gt stop --all            # Emergency stop all polecats
+```
+
+---
+
+## Infrastructure Commands
+
+### gt daemon
+
+Manage the Gas Town background daemon. The daemon is a simple Go process that pokes agents periodically and processes lifecycle requests.
+
+**Syntax:**
+```bash
+gt daemon <subcommand> [flags]
+```
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `start` | Start the daemon |
+| `stop` | Stop the daemon |
+| `status` | Show daemon status |
+| `logs` | View daemon logs |
+
+**Examples:**
+```bash
+gt daemon start                  # Start daemon
+gt daemon stop                   # Stop daemon
+gt daemon status                 # Check daemon status
+gt daemon logs                   # View daemon logs
+```
+
+---
+
+### gt deacon
+
+Manage the Deacon - the hierarchical health-check orchestrator.
+
+**Syntax:**
+```bash
+gt deacon <subcommand> [flags]
+```
+
+**Aliases:** `dea`
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `start` | Start the Deacon session |
+| `stop` | Stop the Deacon session |
+| `attach` | Attach to the Deacon session |
+| `restart` | Restart the Deacon session |
+| `status` | Check Deacon session status |
+| `health-check <agent>` | Send a health check ping to an agent |
+| `health-state` | Show health check state for all agents |
+| `zombie-scan` | Scan for idle polecats that should have been nuked |
+| `force-kill <session>` | Force-kill an unresponsive agent session |
+
+**Examples:**
+```bash
+gt deacon start                  # Start Deacon
+gt deacon stop                   # Stop Deacon
+gt deacon attach                 # Attach to Deacon session
+gt deacon status                 # Check Deacon status
+gt deacon health-state           # Show health of all agents
+gt deacon zombie-scan            # Find orphaned polecats
+```
+
+---
+
+### gt mayor
+
+Manage the Mayor - the global coordinator for Gas Town.
+
+**Syntax:**
+```bash
+gt mayor <subcommand> [flags]
+```
+
+**Aliases:** `may`
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `start` | Start the Mayor session |
+| `stop` | Stop the Mayor session |
+| `attach` | Attach to the Mayor session |
+| `restart` | Restart the Mayor session |
+| `status` | Check Mayor session status |
+
+**Examples:**
+```bash
+gt mayor start                   # Start Mayor
+gt mayor stop                    # Stop Mayor
+gt mayor attach                  # Attach to Mayor session
+gt mayor restart                 # Restart Mayor
+gt mayor status                  # Check Mayor status
+```
+
+---
+
+### gt boot
+
+Manage Boot - the Deacon's watchdog for triage.
+
+Boot is a special dog that runs fresh on each daemon tick. It observes the system state and decides whether to start/wake/nudge/interrupt the Deacon.
+
+**Syntax:**
+```bash
+gt boot <subcommand> [flags]
+```
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `spawn` | Spawn Boot for triage |
+| `status` | Show Boot status |
+| `triage` | Run triage directly (degraded mode) |
+
+**Location:** `~/gt/deacon/dogs/boot/`
+**Session:** `gt-deacon-boot`
+
+---
+
+## Recovery Commands
+
+### gt orphans
+
+Find orphaned commits that were never merged to main.
+
+Polecat work can get lost when sessions are killed before merge, Refinery fails to process, or network issues occur during push.
+
+**Syntax:**
+```bash
+gt orphans [flags]
+```
+
+**Flags:**
+| Flag | Description |
+|------|-------------|
+| `--days int` | Show orphans from last N days (default 7) |
+| `--all` | Show all orphans (no date filter) |
+
+**Examples:**
+```bash
+gt orphans                # Last 7 days (default)
+gt orphans --days=14      # Last 2 weeks
+gt orphans --all          # Show all orphans
+```
+
+---
+
+### gt checkpoint
+
+Manage session checkpoints for crash recovery.
+
+Checkpoints capture the current work state so that if a session crashes, the next session can resume from where it left off.
+
+**Syntax:**
+```bash
+gt checkpoint <subcommand> [flags]
+```
+
+**Subcommands:**
+| Subcommand | Description |
+|------------|-------------|
+| `read` | Read and display the current checkpoint |
+| `write` | Write a checkpoint of current session state |
+| `clear` | Clear the checkpoint file |
+
+**Checkpoint data includes:**
+- Current molecule and step
+- Hooked bead
+- Modified files list
+- Git branch and last commit
+- Timestamp
+
+---
+
+### gt release
+
+Release stuck in_progress issues back to pending.
+
+**Syntax:**
+```bash
+gt release [flags]
+```
+
+Use when issues are stuck in `in_progress` state but no agent is working on them.
+
+---
+
+### gt park
+
+Park current work on a gate for async resumption.
+
+When you need to wait for an external condition (timer, CI, human approval), park your work on a gate. When the gate closes, you'll receive wake mail.
+
+**Syntax:**
+```bash
+gt park <gate-id> [flags]
+```
+
+**Flags:**
+| Flag | Description |
+|------|-------------|
+| `-m, --message string` | Context notes for resumption |
+| `-n, --dry-run` | Show what would be done |
+
+**Examples:**
+```bash
+# Create a timer gate and park work on it
+bd gate create --await timer:30m --title "Coffee break"
+gt park <gate-id> -m "Taking a break, will resume auth work"
+
+# Park on a human approval gate
+bd gate create --await human:deploy-approval
+gt park <gate-id> -m "Deploy staged, awaiting approval"
+```
+
+---
+
+### gt resume
+
+Resume work that was parked on a gate, or check for handoff messages.
+
+**Syntax:**
+```bash
+gt resume [flags]
+```
+
+**Flags:**
+| Flag | Description |
+|------|-------------|
+| `--status` | Just show parked work status |
+| `--handoff` | Check inbox for handoff messages instead |
+| `--json` | Output as JSON |
+
+**Examples:**
+```bash
+gt resume              # Check for and resume parked work
+gt resume --status     # Just show parked work status
+gt resume --handoff    # Check inbox for handoff messages
 ```
