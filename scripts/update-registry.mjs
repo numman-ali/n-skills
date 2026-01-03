@@ -52,7 +52,6 @@ for (const skill of sources.skills || []) {
 console.log("📦 Updating marketplace.json...");
 
 const marketplace = {
-  $schema: "https://anthropic.com/claude-code/marketplace.schema.json",
   name: "n-skills",
   description:
     "Curated plugin marketplace for AI agents - works with Claude Code, Codex, and openskills",
