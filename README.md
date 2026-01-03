@@ -34,7 +34,7 @@ Cursor         →  .cursor/rules/*.mdc
 Windsurf       →  Cascade Rules, Memories
 Cline          →  .clinerules
 Factory/Droid  →  .factory/droids/*.md
-Aider          →  AGENTS.md, .aider.conf.json
+OpenCode       →  .opencode/skill/, opencode.json
 ```
 
 ### The n-skills Way
@@ -76,7 +76,7 @@ Then install any skill:
 
 ### OpenSkills (Universal)
 
-Works with **every agent**: Claude Code, Cursor, Windsurf, Cline, Aider, and anything that reads AGENTS.md.
+Works with **every agent**: Claude Code, Cursor, Windsurf, Cline, OpenCode, and anything that reads AGENTS.md.
 
 ```bash
 npm i -g openskills
@@ -161,7 +161,7 @@ n-skills works everywhere because we use open standards:
 | **Cursor** | openskills → AGENTS.md | ✅ Universal |
 | **Windsurf** | openskills → AGENTS.md | ✅ Universal |
 | **Cline** | openskills → AGENTS.md | ✅ Universal |
-| **Aider** | openskills → AGENTS.md | ✅ Universal |
+| **OpenCode** | Native skill support | ✅ Native |
 | **Amp Code** | openskills → AGENTS.md | ✅ Universal |
 
 ---
