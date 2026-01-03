@@ -79,12 +79,6 @@ const marketplace = {
     source: "./",
     skills: [`./${skill.target.path}`],
     strict: false,
-    ...(skill.source && {
-      upstream: {
-        repo: skill.source.repo,
-        path: skill.source.path,
-      },
-    }),
   })),
   metadata: {
     version: existingVersion,

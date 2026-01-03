@@ -22,11 +22,7 @@
       "skills": [
         "./skills/automation/dev-browser"
       ],
-      "strict": false,
-      "upstream": {
-        "repo": "SawyerHood/dev-browser",
-        "path": "skills/dev-browser"
-      }
+      "strict": false
     },
     {
       "name": "gastown",
