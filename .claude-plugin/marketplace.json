@@ -1,4 +1,5 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "n-skills",
   "description": "Curated plugin marketplace for AI agents - works with Claude Code, Codex, and openskills",
   "owner": {
@@ -39,8 +40,8 @@
     }
   ],
   "metadata": {
-    "version": "1.0.4",
-    "generated_at": "2026-01-03T01:30:00.000Z",
+    "version": "1.0.0",
+    "generated_at": "2026-01-03T08:06:01.203Z",
     "skill_count": 3
   }
 }
