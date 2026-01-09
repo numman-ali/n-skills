@@ -1,0 +1,18 @@
+{
+  "name": "zai-cli",
+  "description": "Z.AI vision, search, reader, and GitHub exploration via MCP",
+  "version": "1.0.0",
+  "author": {
+    "name": "Numman Ali",
+    "url": "https://github.com/numman-ali"
+  },
+  "repository": "https://github.com/numman-ali/zai-cli",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/numman-ali/zai-cli",
+  "keywords": [
+    "vision",
+    "search",
+    "github",
+    "mcp"
+  ]
+}

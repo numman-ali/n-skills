@@ -1,0 +1,17 @@
+{
+  "name": "gastown",
+  "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Numman Ali",
+    "url": "https://github.com/numman-ali"
+  },
+  "repository": "https://github.com/steveyegge/gastown",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/steveyegge/gastown",
+  "keywords": [
+    "multi-agent",
+    "orchestration",
+    "coordination"
+  ]
+}

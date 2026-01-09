@@ -1,0 +1,18 @@
+{
+  "name": "dev-browser",
+  "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Sawyer Hood",
+    "url": "https://github.com/SawyerHood"
+  },
+  "repository": "https://github.com/SawyerHood/dev-browser",
+  "license": "MIT",
+  "homepage": "https://github.com/SawyerHood/dev-browser",
+  "keywords": [
+    "browser",
+    "automation",
+    "playwright",
+    "screenshots"
+  ]
+}

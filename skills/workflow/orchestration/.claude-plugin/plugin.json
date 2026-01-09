@@ -1,0 +1,18 @@
+{
+  "name": "orchestration",
+  "description": "Multi-agent orchestration for complex tasks using cc-mirror tasks and TodoWrite. Use when tasks require parallel work, multiple agents, sophisticated coordination, or decomposition into parallel subtasks.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Numman Ali",
+    "url": "https://github.com/numman-ali"
+  },
+  "repository": "https://github.com/numman-ali/n-skills",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/numman-ali/n-skills",
+  "keywords": [
+    "orchestration",
+    "multi-agent",
+    "parallel-tasks",
+    "workflow"
+  ]
+}

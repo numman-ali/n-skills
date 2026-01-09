@@ -7,21 +7,49 @@
   },
   "plugins": [
     {
-      "name": "n-skills",
-      "description": "Curated collection of high-quality skills for AI coding agents. Includes browser automation, multi-agent orchestration, vision/search tools, and workflow coordination.",
-      "source": "./",
-      "skills": [
-        "./skills/tools/zai-cli",
-        "./skills/tools/gastown",
-        "./skills/automation/dev-browser",
-        "./skills/workflow/orchestration"
-      ],
-      "strict": false
+      "name": "zai-cli",
+      "description": "Z.AI vision, search, reader, and GitHub exploration via MCP",
+      "source": "./skills/tools/zai-cli",
+      "category": "tools",
+      "author": {
+        "name": "Numman Ali",
+        "github": "numman-ali"
+      }
+    },
+    {
+      "name": "gastown",
+      "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination.",
+      "source": "./skills/tools/gastown",
+      "category": "tools",
+      "author": {
+        "name": "Numman Ali",
+        "github": "numman-ali"
+      }
+    },
+    {
+      "name": "dev-browser",
+      "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.",
+      "source": "./skills/automation/dev-browser",
+      "category": "automation",
+      "author": {
+        "name": "Sawyer Hood",
+        "github": "SawyerHood"
+      }
+    },
+    {
+      "name": "orchestration",
+      "description": "Multi-agent orchestration for complex tasks using cc-mirror tasks and TodoWrite. Use when tasks require parallel work, multiple agents, sophisticated coordination, or decomposition into parallel subtasks.",
+      "source": "./skills/workflow/orchestration",
+      "category": "workflow",
+      "author": {
+        "name": "Numman Ali",
+        "github": "numman-ali"
+      }
     }
   ],
   "metadata": {
-    "version": "1.2.0",
-    "generated_at": "2026-01-08T12:00:00.000Z",
+    "version": "1.2.1",
+    "generated_at": "2026-01-09T21:15:00.000Z",
     "skill_count": 4
   }
 }
