@@ -118,6 +118,29 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/n-skills
 
+  # ─────────────────────────────────────────────────────────────────────────
+  # hermes-tweet - Hermes Agent X/Twitter workflows
+  # ─────────────────────────────────────────────────────────────────────────
+
+  - name: hermes-tweet
+    description: Use Hermes Tweet when agents need Hermes Agent sessions to inspect X/Twitter, plan social listening, read public account or tweet data, or run approval-gated X actions.
+    source:
+      repo: Xquik-dev/hermes-tweet
+      path: skills/hermes-tweet
+      ref: master
+    target:
+      category: productivity
+      path: skills/productivity/hermes-tweet
+    author:
+      name: Xquik
+      github: Xquik-dev
+    license: MIT
+    homepage: https://github.com/Xquik-dev/hermes-tweet
+
+    sync:
+      include:
+        - SKILL.md
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema Reference
 # ─────────────────────────────────────────────────────────────────────────────
