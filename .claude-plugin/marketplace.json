@@ -17,16 +17,6 @@
       }
     },
     {
-      "name": "gastown",
-      "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination.",
-      "source": "./skills/tools/gastown",
-      "category": "tools",
-      "author": {
-        "name": "Numman Ali",
-        "github": "numman-ali"
-      }
-    },
-    {
       "name": "dev-browser",
       "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.",
       "source": "./skills/automation/dev-browser",
@@ -34,6 +24,16 @@
       "author": {
         "name": "Sawyer Hood",
         "github": "SawyerHood"
+      }
+    },
+    {
+      "name": "gastown",
+      "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination, beads, hooks, the witness, the mayor, the refinery, or wants to run multiple AI agents on projects simultaneously.",
+      "source": "./skills/tools/gastown",
+      "category": "tools",
+      "author": {
+        "name": "Numman Ali",
+        "github": "numman-ali"
       }
     },
     {
@@ -48,18 +48,28 @@
     },
     {
       "name": "open-source-maintainer",
-      "description": "End-to-end GitHub repository maintenance for open-source projects. Use when asked to triage issues, review PRs, analyze contributor activity, generate maintenance reports, or maintain a repository.",
+      "description": "End-to-end GitHub repository maintenance for open-source projects. Use when asked to triage issues, review PRs, analyze contributor activity, generate maintenance reports, or maintain a repository. Triggers include \"triage\", \"maintain\", \"review PRs\", \"analyze issues\", \"repo maintenance\", \"what needs attention\", \"open source maintenance\", or any request to understand and act on GitHub issues/PRs.",
       "source": "./skills/workflow/open-source-maintainer",
       "category": "workflow",
       "author": {
         "name": "Numman Ali",
         "github": "numman-ali"
       }
+    },
+    {
+      "name": "x-twitter-scraper",
+      "description": "Use Xquik for X/Twitter search, profiles, timelines, exports, monitoring, webhooks, SDK or MCP setup, and explicitly approved publishing. Read-only by default. Use when agents need structured X data or a bounded X workflow. Not affiliated with X Corp.",
+      "source": "./skills/data/x-twitter-scraper",
+      "category": "data",
+      "author": {
+        "name": "Xquik",
+        "github": "Xquik-dev"
+      }
     }
   ],
   "metadata": {
     "version": "1.3.5",
-    "generated_at": "2026-07-16T00:31:46.168Z",
-    "skill_count": 5
+    "generated_at": "2026-07-30T16:36:54.616Z",
+    "skill_count": 6
   }
 }

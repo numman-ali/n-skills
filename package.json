@@ -4,6 +4,7 @@
   "description": "Curated plugin marketplace for AI coding agents",
   "private": true,
   "scripts": {
+    "test": "node --test scripts/*.test.mjs",
     "sync": "node scripts/sync-external.mjs",
     "update-registry": "node scripts/update-registry.mjs",
     "sync:all": "npm run sync && npm run update-registry"
