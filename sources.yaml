@@ -118,6 +118,32 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/n-skills
 
+  # ─────────────────────────────────────────────────────────────────────────
+  # x-twitter-scraper - Xquik X/Twitter data workflows
+  # ─────────────────────────────────────────────────────────────────────────
+
+  - name: x-twitter-scraper
+    description: Use Xquik for X/Twitter search, profiles, timelines, exports, monitoring, webhooks, SDK or MCP setup, and explicitly approved publishing. Read-only by default. Use when agents need structured X data or a bounded X workflow. Not affiliated with X Corp.
+    source:
+      repo: Xquik-dev/x-twitter-scraper
+      path: skills/x-twitter-scraper
+      ref: master
+    target:
+      category: data
+      path: skills/data/x-twitter-scraper
+    author:
+      name: Xquik
+      github: Xquik-dev
+    license: MIT
+    homepage: https://github.com/Xquik-dev/x-twitter-scraper
+
+    sync:
+      include:
+        - SKILL.md
+        - references/
+        - skill-card.md
+        - skillspector-report.md
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema Reference
 # ─────────────────────────────────────────────────────────────────────────────
