@@ -118,6 +118,26 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/n-skills
 
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # universal-checkout - Zinc Universal Checkout (synced from zincio/skills)
+  # ─────────────────────────────────────────────────────────────────────────
+
+  - name: universal-checkout
+    description: Discover, buy, track, and return products across Amazon, Walmart, Target, Best Buy, eBay, and 50+ other US retailers via the Zinc API (zinc.com). Use when the user wants to search for or buy a product, check out, check order status or tracking, cancel an order, or return an item programmatically. Supports API key auth (ZINC_API_KEY) or Machine Payments Protocol (MPP) for per-request payments via a Stripe card (Stripe Link), Tempo stablecoins, or x402 (USDC on Base).
+    source:
+      repo: zincio/skills
+      path: skills/universal-checkout      # Path within source repo
+      ref: master                          # Default branch of zincio/skills
+    target:
+      category: tools
+      path: skills/tools/universal-checkout
+    author:
+      name: Ilias Ism
+      github: zincio
+    license: MIT
+    homepage: https://zinc.com
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema Reference
 # ─────────────────────────────────────────────────────────────────────────────
