@@ -1,0 +1,13 @@
+{
+  "name": "atlas-cloud-image",
+  "description": "Generate images with Atlas Cloud using live model and schema discovery",
+  "version": "1.0.0",
+  "author": {
+    "name": "binyangzhu000-sudo",
+    "url": "https://github.com/binyangzhu000-sudo"
+  },
+  "repository": "https://github.com/numman-ali/n-skills",
+  "license": "Apache-2.0",
+  "homepage": "https://www.atlascloud.ai",
+  "keywords": ["atlas-cloud", "image-generation", "text-to-image"]
+}
