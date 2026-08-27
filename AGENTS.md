@@ -29,6 +29,13 @@ Invoke skills using: `openskills read <skill-name>`
 </skill>
 
 <skill>
+<name>atlas-cloud-image</name>
+<description>Generate images through Atlas Cloud with live model and input-schema validation. Use when the user asks to create an image with Atlas Cloud or needs an optional API-based text-to-image provider.</description>
+<location>skills/tools/atlas-cloud-image</location>
+<invoke>openskills read atlas-cloud-image</invoke>
+</skill>
+
+<skill>
 <name>dev-browser</name>
 <description>Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.</description>
 <location>skills/automation/dev-browser</location>
@@ -62,6 +69,7 @@ Invoke skills using: `openskills read <skill-name>`
 
 ### tools
 - **zai-cli**: Z.AI vision, search, reader, and GitHub exploration via MCP
+- **atlas-cloud-image**: Generate images through Atlas Cloud with live model and input-schema validation
 - **gastown**: Multi-agent orchestrator for Claude Code
 
 ### automation
