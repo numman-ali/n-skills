@@ -1,0 +1,20 @@
+{
+  "name": "you-web",
+  "description": "Use You.com MCP tools for current web search, URL content extraction, cited web synthesis, and x402-aware web access. Use when the answer depends on current web information, reading specific URLs, source comparison, or cited research.",
+  "version": "1.0.0",
+  "author": {
+    "name": "You.com",
+    "url": "https://github.com/youdotcom-oss"
+  },
+  "repository": "https://github.com/youdotcom-oss/agent-skills",
+  "license": "MIT",
+  "homepage": "https://github.com/youdotcom-oss/agent-skills",
+  "keywords": [
+    "you.com",
+    "mcp",
+    "web-search",
+    "content-extraction",
+    "research",
+    "citations"
+  ]
+}

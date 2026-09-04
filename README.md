@@ -74,6 +74,7 @@ Then install any skill:
 /plugin install gastown@n-skills
 /plugin install dev-browser@n-skills
 /plugin install zai-cli@n-skills
+/plugin install you-web@n-skills
 ```
 
 ### OpenSkills (Universal)
@@ -109,6 +110,7 @@ $skill-installer https://github.com/numman-ali/n-skills/tree/main/skills/tools/z
 | **[dev-browser](./skills/automation/dev-browser/)** | `automation` | [SawyerHood](https://github.com/SawyerHood/dev-browser) | Browser automation with persistent page state |
 | **[gastown](./skills/tools/gastown/)** | `tools` | native | Multi-agent orchestrator (best with Claude Code + Opus) |
 | **[zai-cli](./skills/tools/zai-cli/)** | `tools` | native | Z.AI vision, search, reader, and GitHub exploration via MCP |
+| **[you-web](./skills/tools/you-web/)** | `tools` | [youdotcom-oss](https://github.com/youdotcom-oss/agent-skills) | You.com web search, URL reading, and cited synthesis via MCP |
 
 > More skills coming soon. Want to contribute? See [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -223,6 +225,9 @@ n-skills/
 │   │   └── zai-cli/
 │   │       ├── .claude-plugin/
 │   │       └── skills/zai-cli/
+│   │   └── you-web/               # Synced from youdotcom-oss
+│   │       ├── .claude-plugin/
+│   │       └── skills/you-web/    # SKILL.md lives here
 │   └── workflow/
 │       ├── orchestration/
 │       │   ├── .claude-plugin/

@@ -56,6 +56,13 @@ Invoke skills using: `openskills read <skill-name>`
 <invoke>openskills read open-source-maintainer</invoke>
 </skill>
 
+<skill>
+<name>you-web</name>
+<description>Use You.com MCP tools for current web search, URL content extraction, cited web synthesis, and x402-aware web access. Use when the answer depends on current web information, reading specific URLs, source comparison, or cited research.</description>
+<location>skills/tools/you-web</location>
+<invoke>openskills read you-web</invoke>
+</skill>
+
 </available_skills>
 
 ## Categories
@@ -63,6 +70,7 @@ Invoke skills using: `openskills read <skill-name>`
 ### tools
 - **zai-cli**: Z.AI vision, search, reader, and GitHub exploration via MCP
 - **gastown**: Multi-agent orchestrator for Claude Code
+- **you-web**: You.com web search, URL reading, and cited synthesis via MCP
 
 ### automation
 - **dev-browser**: Browser automation with persistent page state

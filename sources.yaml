@@ -67,6 +67,29 @@ skills:
         - bun.lock
         - tmp/
 
+  - name: you-web
+    description: Use You.com MCP tools for current web search, URL content extraction, cited web synthesis, and x402-aware web access. Use when the answer depends on current web information, reading specific URLs, source comparison, or cited research.
+    source:
+      repo: youdotcom-oss/agent-skills
+      path: skills/you-web      # Path within source repo
+      ref: main                 # Branch, tag, or commit SHA
+    target:
+      category: tools
+      path: skills/tools/you-web
+    author:
+      name: You.com
+      github: youdotcom-oss
+    license: MIT
+    homepage: https://github.com/youdotcom-oss/agent-skills
+    verified: false                 # Awaiting maintainer review
+
+    # Sync configuration
+    sync:
+      # Files/folders to copy (relative to source.path)
+      include:
+        - SKILL.md
+        - references/
+
   # ─────────────────────────────────────────────────────────────────────────
   # gastown - Multi-agent orchestrator (native skill)
   # ─────────────────────────────────────────────────────────────────────────

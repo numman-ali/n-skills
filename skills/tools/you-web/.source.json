@@ -1,0 +1,13 @@
+{
+  "synced_from": "youdotcom-oss/agent-skills",
+  "source_path": "skills/you-web",
+  "commit": "78e20fd40bfdccbf91a5aaa67c2e46ba4ed2bbaa",
+  "content_hash": "00863cbd404c18846540c9026ce57c637904b9e3c3b6fb22c11301fe20d25788",
+  "synced_at": "2026-09-01T08:37:51.482Z",
+  "homepage": "https://github.com/youdotcom-oss/agent-skills",
+  "author": {
+    "name": "You.com",
+    "github": "youdotcom-oss"
+  },
+  "license": "MIT"
+}
