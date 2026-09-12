@@ -28,6 +28,19 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/zai-cli
 
+  # atlas-cloud-image - Native optional image-generation provider
+  - name: atlas-cloud-image
+    description: Generate images through Atlas Cloud with live model and input-schema validation. Use when the user asks to create an image with Atlas Cloud or needs an optional API-based text-to-image provider.
+    native: true
+    target:
+      category: tools
+      path: skills/tools/atlas-cloud-image
+    author:
+      name: binyangzhu000-sudo
+      github: binyangzhu000-sudo
+    license: Apache-2.0
+    homepage: https://www.atlascloud.ai
+
   # ─────────────────────────────────────────────────────────────────────────
   # dev-browser - Browser automation (synced from SawyerHood/dev-browser)
   # ─────────────────────────────────────────────────────────────────────────

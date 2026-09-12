@@ -9,57 +9,61 @@
     {
       "name": "zai-cli",
       "description": "Z.AI vision, search, reader, and GitHub exploration via MCP",
-      "source": "./skills/tools/zai-cli",
-      "category": "tools",
-      "author": {
-        "name": "Numman Ali",
-        "github": "numman-ali"
-      }
+      "source": "./",
+      "skills": [
+        "./skills/tools/zai-cli"
+      ],
+      "strict": false
     },
     {
-      "name": "gastown",
-      "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination.",
-      "source": "./skills/tools/gastown",
-      "category": "tools",
-      "author": {
-        "name": "Numman Ali",
-        "github": "numman-ali"
-      }
+      "name": "atlas-cloud-image",
+      "description": "Generate images through Atlas Cloud with live model and input-schema validation. Use when the user asks to create an image with Atlas Cloud or needs an optional API-based text-to-image provider.",
+      "source": "./",
+      "skills": [
+        "./skills/tools/atlas-cloud-image"
+      ],
+      "strict": false
     },
     {
       "name": "dev-browser",
       "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows.",
-      "source": "./skills/automation/dev-browser",
-      "category": "automation",
-      "author": {
-        "name": "Sawyer Hood",
-        "github": "SawyerHood"
-      }
+      "source": "./",
+      "skills": [
+        "./skills/automation/dev-browser"
+      ],
+      "strict": false
+    },
+    {
+      "name": "gastown",
+      "description": "Multi-agent orchestrator for Claude Code. Use when user mentions gastown, gas town, gt commands, convoys, polecats, rigs, slinging work, multi-agent coordination, beads, hooks, the witness, the mayor, the refinery, or wants to run multiple AI agents on projects simultaneously.",
+      "source": "./",
+      "skills": [
+        "./skills/tools/gastown"
+      ],
+      "strict": false
     },
     {
       "name": "orchestration",
       "description": "Multi-agent orchestration for complex tasks using cc-mirror tasks and TodoWrite. Use when tasks require parallel work, multiple agents, sophisticated coordination, or decomposition into parallel subtasks.",
-      "source": "./skills/workflow/orchestration",
-      "category": "workflow",
-      "author": {
-        "name": "Numman Ali",
-        "github": "numman-ali"
-      }
+      "source": "./",
+      "skills": [
+        "./skills/workflow/orchestration"
+      ],
+      "strict": false
     },
     {
       "name": "open-source-maintainer",
-      "description": "End-to-end GitHub repository maintenance for open-source projects. Use when asked to triage issues, review PRs, analyze contributor activity, generate maintenance reports, or maintain a repository.",
-      "source": "./skills/workflow/open-source-maintainer",
-      "category": "workflow",
-      "author": {
-        "name": "Numman Ali",
-        "github": "numman-ali"
-      }
+      "description": "End-to-end GitHub repository maintenance for open-source projects. Use when asked to triage issues, review PRs, analyze contributor activity, generate maintenance reports, or maintain a repository. Triggers include \"triage\", \"maintain\", \"review PRs\", \"analyze issues\", \"repo maintenance\", \"what needs attention\", \"open source maintenance\", or any request to understand and act on GitHub issues/PRs.",
+      "source": "./",
+      "skills": [
+        "./skills/workflow/open-source-maintainer"
+      ],
+      "strict": false
     }
   ],
   "metadata": {
     "version": "1.3.6",
-    "generated_at": "2026-09-04T00:38:51.592Z",
-    "skill_count": 5
+    "generated_at": "2026-09-07T12:21:54.442Z",
+    "skill_count": 6
   }
 }
