@@ -149,3 +149,112 @@ skills:
 #   sync:          Optional. Fine-grained sync control
 #     include:     List of files/folders to copy
 #     exclude:     Glob patterns to skip
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # mblode/agent-skills - UI/typography/docs/PR quality pack (external)
+  # ─────────────────────────────────────────────────────────────────────────
+
+  - name: ui-design
+    description: Designs and builds React/Next/Tailwind UI and audits visual and interaction defects. Use when asked to build a landing page, extract a design system, add dark mode, make this responsive, remove UI slop, or audit a component.
+    source:
+      repo: mblode/agent-skills
+      path: skills/ui-design
+      ref: main
+    target:
+      category: development
+      path: skills/development/ui-design
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: typography-audit
+    description: Audits font loading, type scales, measure, spacing, OpenType, and rendered punctuation with 78 scoped rules. Use when asked to audit typography, fix the fonts, or review a type system.
+    source:
+      repo: mblode/agent-skills
+      path: skills/typography-audit
+      ref: main
+    target:
+      category: development
+      path: skills/development/typography-audit
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: ax-audit
+    description: Audits agentic products for tool parity, authority, approval payloads, recovery, and trust using 27 rules and a ship verdict. Use when asked for an AX audit or to review an agent approval flow.
+    source:
+      repo: mblode/agent-skills
+      path: skills/ax-audit
+      ref: main
+    target:
+      category: development
+      path: skills/development/ax-audit
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: pr-reviewer
+    description: Reviews a diff or security scope read-only using evidence-tiered findings, structural and context-error rubrics, and repository review policy. Use when asked to review changes, structural review, or review for AI patterns.
+    source:
+      repo: mblode/agent-skills
+      path: skills/pr-reviewer
+      ref: main
+    target:
+      category: development
+      path: skills/development/pr-reviewer
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: docs-writing
+    description: Writes and audits technical docs with Diataxis type gating, runnable examples, and 51 documentation rules. Use when asked to review docs, write an API reference, or improve a documentation page.
+    source:
+      repo: mblode/agent-skills
+      path: skills/docs-writing
+      ref: main
+    target:
+      category: documentation
+      path: skills/documentation/docs-writing
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: ui-verification
+    description: Runs scoped browser probes for focus, hit targets, overflow, themes, request failures, and performance attribution, with evidence linked to UI rule IDs. Use when asked to verify in the browser or reproduce a finding.
+    source:
+      repo: mblode/agent-skills
+      path: skills/ui-verification
+      ref: main
+    target:
+      category: development
+      path: skills/development/ui-verification
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
+
+  - name: product-design
+    description: Specifies interaction choices, action scope, reversibility, recovery, and reachable states. Use when asked to design the flow, choose the control, or review a product decision.
+    source:
+      repo: mblode/agent-skills
+      path: skills/product-design
+      ref: main
+    target:
+      category: development
+      path: skills/development/product-design
+    author:
+      name: Matthew Blode
+      github: mblode
+    license: MIT
+    homepage: https://github.com/mblode/agent-skills
