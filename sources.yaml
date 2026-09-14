@@ -118,6 +118,22 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/n-skills
 
+  - name: agent-run-forensics
+    description: Answers questions about a coding agent's earlier run from its recording rather than from memory - which step changed a file, why a command ran, where the build broke - and replays or forks that run offline. Use when investigating what a previous agent session actually did, reproducing a failure someone else reported, or turning a failed session into a regression test.
+    source:
+      repo: Continuum-AI-Corp/OrcaReplay
+      path: skills/agent-run-forensics
+      ref: main
+    target:
+      category: development
+      path: skills/development/agent-run-forensics
+    author:
+      name: Continuum AI
+      github: Continuum-AI-Corp
+    license: Apache-2.0
+    homepage: https://github.com/Continuum-AI-Corp/OrcaReplay
+    verified: false
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema Reference
 # ─────────────────────────────────────────────────────────────────────────────
