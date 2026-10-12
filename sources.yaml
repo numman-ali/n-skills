@@ -149,3 +149,16 @@ skills:
 #   sync:          Optional. Fine-grained sync control
 #     include:     List of files/folders to copy
 #     exclude:     Glob patterns to skip
+- name: agent-safety-preflight
+  source:
+    repo: el-zachariah/ai-agent-safety-starter-pack
+    path: skills/agent-safety-preflight
+    ref: main
+  target:
+    category: development
+    path: skills/development/agent-safety-preflight
+  author:
+    name: Signal Loom Works
+    github: el-zachariah
+  license: MIT
+  homepage: https://github.com/el-zachariah/ai-agent-safety-starter-pack
