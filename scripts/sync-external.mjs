@@ -10,7 +10,7 @@
  *   node scripts/sync-external.mjs [--force] [--skill=name]
  */
 
-import { execSync } from "child_process";
+import { execSync, execFileSync } from "child_process";
 import { createHash } from "crypto";
 import { existsSync, mkdirSync, rmSync, cpSync, readFileSync, writeFileSync, readdirSync, statSync } from "fs";
 import { join, dirname } from "path";
@@ -125,13 +125,13 @@ for (const skill of sources.skills || []) {
     // Clone or fetch
     if (!existsSync(repoDir)) {
       console.log(`   Cloning ${skill.source.repo}...`);
-      execSync(`git clone --depth 1 --branch ${ref} ${repoUrl} ${repoDir}`, {
+      execFileSync("git", ["clone", "--depth", "1", "--branch", ref, repoUrl, repoDir], {
         stdio: "pipe",
       });
     }
 
     // Get current commit hash
-    const commitHash = execSync(`git -C ${repoDir} rev-parse HEAD`, {
+    const commitHash = execFileSync("git", ["-C", repoDir, "rev-parse", "HEAD"], {
       encoding: "utf-8",
     }).trim();
 
