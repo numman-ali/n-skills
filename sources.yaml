@@ -118,6 +118,34 @@ skills:
     license: Apache-2.0
     homepage: https://github.com/numman-ali/n-skills
 
+  # ─────────────────────────────────────────────────────────────────────────
+  # agentpay - Payment layer for AI agents (synced from M1mino/agentpay)
+  # ─────────────────────────────────────────────────────────────────────────
+
+  - name: agentpay
+    description: Payment layer for AI agents. Register, topup with USDC on Base, pay other agents in CREDIT (1 CREDIT = 1 USDC), and withdraw. Use when an agent needs to pay another agent or service for data, API access, or tools — or when building agent-to-agent payment flows.
+    source:
+      repo: M1mino/agentpay
+      ref: main
+    target:
+      category: tools
+      path: skills/tools/agentpay
+    author:
+      name: Anfisa
+      github: M1mino
+    license: MIT
+    homepage: https://github.com/M1mino/agentpay
+    sync:
+      include:
+        - SKILL.md
+        - README.md
+      exclude:
+        - "*.py"
+        - "*.txt"
+        - deploy/
+        - tests/
+        - venv/
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema Reference
 # ─────────────────────────────────────────────────────────────────────────────
